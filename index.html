@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="css/style2.css">
+<script src="script.js"></script>
+<link rel="icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" href="/logo192.png" />
+<title>Private Profile</title>
+
+</head>
+
+<body>
+  <img src="img/300.jpg" alt="Profile Picture">
+  <button onclick="myFunction()">View my profile</button>
+  <p>You will be automatically redirected to my profile</p>
+  <p id="countdown"></p>
+
+ <script>
+   var countdownEl = document.getElementById('countdown');
+  var countdownTime = 3;
+  countdownEl.innerHTML = countdownTime;
+
+  var countdownInterval = setInterval(function() {
+    countdownTime--;
+    countdownEl.innerHTML = countdownTime;
+    if (countdownTime == 0) {
+      clearInterval(countdownInterval);
+      myFunction();
+    }
+  }, 1000);
+	  
+    function myFunction() {
+      var app = "vnd.youtube://youtube.com/redirect?event=comments&redir_token=QUFFLUhqbDg5cWJTR3pocTFfRVNYUF9LS3loVVA2RjktUXxBQ3Jtc0trVXhSa3NhUmFsSV9ydUZnY0Y1UFFEbHg1MlB4V1ZWYXRBY0VIWmljQ2w0WU9aMm9aMHh5N1JiVzd5WGpjdmtZWWFEd0pOWEs0SmtQbGRBRzRQTHgwbnMtRFJKNEJYU0RQQ1ptbXdJbzQyYVJvMUdfWQ&q=https%3A%2F%2Fv.ht%2Fs4ztL&html_redirect=1";
+	
+      if (/Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+        window.location.href = app;
+        window.setTimeout(function() {
+          window.location.href = mobileFallback;
+        }, 25);
+      } else {
+        window.location.href = desktopFallback;
+      }
+	  
+	   function killPopup() {
+        window.removeEventListener('pagehide', killPopup);
+    }
+
+    window.addEventListener('pagehide', killPopup);
+    }
+
+</script>
+</body>
+</html>
